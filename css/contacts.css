@@ -7,17 +7,19 @@
     width: 100%; /* Full width */
     box-sizing: border-box; /* Ensure padding/borders are included in calculations */
     flex-direction: row; /* Default layout: boxes side by side */
+    justify-content: center;
+    align-content: center;
   }
   
   /* Left Box - 66% width */
   .left-box {
-    flex: 2; /* This will take 2 parts out of the total 3 (2 + 1 = 3) */
+   
     
     display: flex; /* Flex container */
     flex-wrap: wrap; /* Allow wrapping to multiple rows */
     gap: 10px; /* Space between the boxes */
     padding: 20px;
-    justify-content: flex-start; /* Align boxes to the left */
+    
     box-sizing: border-box; /* Include padding in width/height */
     margin:50px 0px 50px 10px;
   }
@@ -73,24 +75,9 @@
     background: url(../images/mob-back.png); 
   }
   
-  /* Right Box - 33% width */
-  .right-box {
-    flex: 1; /* This will take 1 part out of the total 3 */
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box; /* Ensure padding is accounted for */
-    margin:30px 0px 0px 0px;
-  }
+ 
   
-  /* Image styling */
-  .right-box img {
-    max-width: 100%; /* Ensure image doesn't overflow */
-    max-height: 100%; /* Ensure image fits within the container */
-    object-fit: contain; /* Preserve aspect ratio */
-  }
+  
   
   
   /* Responsive Design: At 550px or smaller */
@@ -100,14 +87,10 @@
       height: auto; /* Adjust height to fit content */
     }
   
-    .right-box {
-      order: -1; /* Move the right box to the top */
-      width: 100%; /* Take full width */
-      height: auto; /* Adjust height to fit content */
-    }
+    
   
     .left-box {
-      order: 0; /* Left box goes below the right box */
+     
       width: 100%; /* Take full width */
       height: auto; /* Adjust height to fit content */
       justify-content: center; /* Center items horizontally */
