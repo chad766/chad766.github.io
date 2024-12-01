@@ -58,3 +58,17 @@ img:hover {
 
 
 
+@media screen and (max-width: 550px) {
+  .container{
+    width: 97%;
+  }
+  
+  .box {
+    padding-top: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+
+  }
+
+ 
+}
