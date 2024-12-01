@@ -1,0 +1,116 @@
+
+
+/* Flexbox container */
+.container-start {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Ensure padding/borders are included in calculations */
+    flex-direction: row; /* Default layout: boxes side by side */
+  }
+  
+  /* Left Box - 66% width */
+  .left-box {
+    flex: 2; /* This will take 2 parts out of the total 3 (2 + 1 = 3) */
+    
+    display: flex; /* Flex container */
+    flex-wrap: wrap; /* Allow wrapping to multiple rows */
+    gap: 10px; /* Space between the boxes */
+    padding: 20px;
+    justify-content: flex-start; /* Align boxes to the left */
+    box-sizing: border-box; /* Include padding in width/height */
+    margin:50px 0px 50px 10px;
+  }
+  
+  /* Inner Divs in Left Box */
+  .text-box {
+    position: relative;
+    background-color: rgb(0, 0, 0, 0.3);
+  
+    padding: 0;
+    margin: 50px;
+    border-radius: 20px;
+    width: 175px; /* Fixed width for boxes */
+    height: 300px; /* Fixed height to maintain uniform size */
+    box-sizing: border-box; /* Include padding and border in size calculation */
+    overflow: hidden; /* Prevent content from spilling out */
+  }
+  
+  .text-box img {
+    width: 100%; /* Make the image fill the box */
+    height: 100%; /* Ensure the image covers the entire box */
+    object-fit: cover; /* Maintain aspect ratio while filling the box */
+    transition: all 0.3s ease; /* Smooth transition for blur and opacity */
+  }
+  
+  .text-box p {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    padding: 2px;
+    border-radius: 5px;
+    transition: opacity 0.3s ease; /* Smooth fade-in on hover */
+  }
+  
+  /* Hover Effects */
+  .text-box:hover img {
+    filter: blur(4px); /* Apply blur effect */
+    opacity: 0.7; /* Reduce opacity for the image */
+  }
+  
+  .text-box:hover p {
+    opacity: 1; /* Show text when hovered */
+  }
+  
+  /* Right Box - 33% width */
+  .right-box {
+    flex: 1; /* This will take 1 part out of the total 3 */
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding is accounted for */
+    margin:30px 0px 0px 0px;
+  }
+  
+  /* Image styling */
+  .right-box img {
+    max-width: 100%; /* Ensure image doesn't overflow */
+    max-height: 100%; /* Ensure image fits within the container */
+    object-fit: contain; /* Preserve aspect ratio */
+  }
+  
+  
+  /* Responsive Design: At 550px or smaller */
+  @media (max-width: 769px) {
+    .container-start {
+      flex-direction: column; /* Stack boxes vertically */
+      height: auto; /* Adjust height to fit content */
+    }
+  
+    .right-box {
+      order: -1; /* Move the right box to the top */
+      width: 100%; /* Take full width */
+      height: auto; /* Adjust height to fit content */
+    }
+  
+    .left-box {
+      order: 0; /* Left box goes below the right box */
+      width: 100%; /* Take full width */
+      height: auto; /* Adjust height to fit content */
+      justify-content: center; /* Center items horizontally */
+      margin: 0px
+    }
+  
+    .text-box {
+      margin: 10px; /* Reduce margin for smaller screens */
+    }
+  }
+  

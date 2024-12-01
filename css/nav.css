@@ -1,0 +1,277 @@
+/* one known bug, cannot get nav bar text colour from white to black on default when opened nav bar in mobile mode */ 
+
+
+body {
+    margin: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+
+
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    object-fit: cover; /* Ensures video covers the viewport without distortion */
+    z-index: -1;
+}
+
+
+.nav {
+    height: 3.2rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01)); /* Starting with gradient */
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.01);
+    transition: background 0.2s ease, color 0.2s ease; /* Transition for background and color */
+
+    position: fixed;
+    width: 100%;
+    top: 0vh; 
+    z-index: 1000;
+    
+    /* sticky nav bar, remove for how it was, 
+    weirdly on mobile now clicking hamburger makes you teleport to top of screen
+    and still has text issue where nav bar covers 
+    Want nav bar to turn white when scrolling down on wide screen */ 
+}
+
+
+
+/* Hover effect */
+.nav:hover {
+    background: #ffffff; /* Change to solid white on hover */
+    color: #0070ad; /* Change text color to blue on hover */
+}
+
+
+.nav__logo {
+    font-size: 1.5rem;
+    margin: auto 1rem;
+    z-index: 5;
+}
+
+.nav__menu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav__menu ul li {
+    list-style: none;
+}
+
+.nav__menu ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 1rem;
+    display: block;
+    position: relative; /* Needed for positioning the underline */
+}
+
+/* Animated underline effect */
+.nav__menu ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px; /* Thickness of the underline */
+    background-color: #0070ad;
+    transition: width 0.5s ease;
+}
+
+.nav__menu ul li a:hover::after {
+    width: 100%; /* Expands underline on hover */
+}
+
+/* Hover effect for text */
+.nav__menu ul li a:hover {
+    color: #0070ad;
+}
+
+.nav__hamburger {
+    width: 1.875rem;
+    height: 1.313rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.nav__hamburger__line {
+    height: 0.188rem;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0.625rem;
+    transition: all ease-in-out 0.2s;
+    z-index: 2;
+}
+
+
+
+
+
+
+/* anything under 550px will active the styling property. Try changing window width*/ 
+@media screen and (max-width: 550px) {
+    body{
+        padding: 30px 0px 0px 0px;
+    }
+
+    .nav {
+        height: 3.2rem;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        color: #fff;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.01)); /* Starting with gradient */
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.00001);
+        transition: background 0.2s ease, color 0.2s ease; /* Transition for background and color */
+    }
+    
+
+    .nav.sticky {
+        position: fixed; /* Locks the navbar in place */
+        top: -10;     
+    } /* when the JS notices a scroll it adds the stick class to the  nav but will only activate in this media screen*/ 
+
+
+    /* Hover effect */
+    .nav:hover {
+        background: rgba(255,255,255,0.0001); /* Change to solid white on hover */
+      
+    }
+    
+
+    
+
+    /* the below sections of code focus on the logo. Tieing in with the hamburger click event and sliding over the logo */ 
+
+    .nav__logo {
+        font-size: 1.5rem;
+        margin: auto 1rem auto 1rem;
+        transition: all 0.4s ease;
+        position:relative;
+    }
+
+    .logo-active {
+        position: absolute; /* Allow free positioning */
+        top: 0; /* Position at the top */
+        left: 48%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust for the logo's width */
+        transition: all 0.4s ease; /* Smooth transition for movement */
+        z-index: 10; /* Ensure it's above other elements */
+    }
+
+    .nav__logo.initial {
+        position: absolute;
+        top: 12px;
+        left: 0px; /* Adjust this value as needed to position off-screen */
+        transition: all 0.4s ease; /* Smooth transition */
+    }
+
+
+
+
+
+
+
+    .nav__hamburger{
+        display: flex;
+    }
+
+    .nav__menu {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+        width: 100%;
+        transition: all ease-in-out 0.8s;
+        top: 0;
+        transform: translateY(-100%); /* Slide up initially */
+        transition: 0.8s ease-in-out;
+    }
+
+    .nav__logo {
+       position:relative;
+       
+    }
+
+
+    .nav{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav__menu ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 3rem 0 0.6rem;
+    }
+
+    .nav__menu ul li {
+        text-align: center;
+    }
+
+   
+
+    .nav__menu {
+        z-index: 1;
+    }
+
+    .nav__menu.active {
+        transform: translateY(0); /* Slide down when active */
+    }
+    .nav__hamburger.active :nth-child(1) {
+        transform: rotate(45deg) translate(0.45rem, 0.1875rem);
+        background-color: #000000;
+    }
+    .nav__hamburger.active :nth-child(2) {
+        opacity: 0;
+    }
+    .nav__hamburger.active :nth-child(3) {
+        transform: rotate(-45deg) translate(0.45rem, -0.1875rem);
+        background-color: #000000;
+    }
+
+    
+
+    .nav__menu ul li a:hover::after {
+        width: 0%; 
+    }
+    /* The above stops the loading line displaying while in mobile mode */ 
+    
+    .video-bg {
+        display: none;
+        
+    }
+    
+   
+
+}
+
+
+
+
+@media (hover: hover) {
+    
+}
+
+/*
+the above doesn't work although is supposed to  by selecting when devices can't hover i.e a phone 
+hence the color of text is set to black in this mode and appears visible when 
+inspecting in chrome and switching to mobile view */ 

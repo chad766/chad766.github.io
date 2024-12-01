@@ -1,0 +1,60 @@
+body {
+  background-color: black;
+}
+
+.container {
+  display: flex;         /* Enables Flexbox layout */
+  flex-wrap: wrap;       /* Allows wrapping when elements don't fit */
+  justify-content: space-evenly; /* Distributes space between items */      
+  align-content: center;
+  width: 90%;
+  margin: 5% auto;
+  padding: 0;
+  font-size: 125%;
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  align-items: center;
+  border-radius: 10px;
+
+}
+
+.container1 {
+  background: url(../images/dark.png); 
+  color: white;
+}
+
+.container2 {
+  background: url(../images/light.jpg); 
+  color: black;
+}
+
+.box {
+    flex: 1;               /* Each element takes up equal space */
+    min-width: 400px;      /* Ensures a minimum width for each element */
+    max-width: 50%;      /* Sets a maximum width for each element */
+    padding: 2%;
+  }
+  
+
+
+img {
+    width:100%;
+    height:auto;
+    border-radius: 10px;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    object-fit: contain;
+    max-height: 80vh;
+  
+  
+}
+
+
+img:hover {
+  transform:scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+
