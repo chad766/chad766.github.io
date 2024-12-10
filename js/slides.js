@@ -108,3 +108,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1200); // Adjust delay as needed
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all images in slideshows
+    const slideshows = document.querySelectorAll('.slideshow-container');
+    slideshows.forEach(slideshow => {
+        const images = slideshow.querySelectorAll('.mySlides img');
+        images.forEach(img => {
+            img.addEventListener('click', () => toggleFullscreen(img));
+        });
+    });
+
+    let isFullscreen = false;
+
+    function toggleFullscreen(image) {
+        const parentSlide = image.closest('.slideshow-container');
+        if (!isFullscreen) {
+            // Enter fullscreen mode
+            parentSlide.classList.add('fullscreen');
+            document.body.style.overflow = 'hidden'; // Disable scrolling
+    
+            // Dynamically adjust image to fill available space
+            const aspectRatio = image.naturalWidth / image.naturalHeight;
+            const viewportRatio = window.innerWidth / window.innerHeight;
+    
+            if (aspectRatio > viewportRatio) {
+                // Image is wider than the viewport
+                image.style.width = '100%'; // Fill width
+                image.style.height = 'auto';
+            } else {
+                // Image is taller or matches viewport ratio
+                image.style.width = 'auto';
+                image.style.height = '100%'; // Fill height
+            }
+    
+            // Ensure small images scale up to fit fullscreen
+            image.style.maxWidth = '100vw';
+            image.style.maxHeight = '100vh';
+            image.style.minWidth = '100vw'; // Force small images to scale up
+            image.style.minHeight = '100vh';
+    
+            isFullscreen = true;
+        } else {
+            // Exit fullscreen mode
+            parentSlide.classList.remove('fullscreen');
+            document.body.style.overflow = ''; // Re-enable scrolling
+    
+            // Reset styles
+            image.style.width = '';
+            image.style.height = '';
+            image.style.maxWidth = '';
+            image.style.maxHeight = '';
+            image.style.minWidth = '';
+            image.style.minHeight = '';
+            isFullscreen = false;
+        }
+    }
+    
+    
+});
+
