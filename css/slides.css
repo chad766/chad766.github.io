@@ -150,10 +150,10 @@ a {
   right: 20px;
 }
 
-/* Adjust the dots position for fullscreen */
+/* Adjust the dots position for fullscreen, boosted bottom from 20 to 50 to allow for address bar */
 .fullscreen .dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 50px; /* Ensure dots are above the address bar */
   z-index: 1100;
   display: flex;
   justify-content: center;

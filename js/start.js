@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var currentTextIndex = 0;
   var currentCharIndex = 0;
   var typingPaused = false;
-  var typingInterval = 80; // Desired typing speed in milliseconds
+  var typingInterval = 60; // Desired typing speed in milliseconds , changed to 60 from 80 based on feedback 
   var typingTimeout; // Variable to hold the timeout reference
 
   // Function to type one text in the typewriter

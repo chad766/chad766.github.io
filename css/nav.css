@@ -60,6 +60,7 @@ body {
     font-size: 1.5rem;
     margin: auto 1rem;
     z-index: 5;
+     white-space: nowrap; /* Prevents wrapping */
 }
 
 .nav__menu ul {

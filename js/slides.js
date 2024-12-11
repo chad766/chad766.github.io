@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add observer to track visibility
       observer.observe(video);
 
-      // Add click event to toggle play/pause manually
+      /* Add click event to toggle play/pause manually
       video.addEventListener("click", () => {
           if (video.paused) {
               video.play();
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
               video.pause();
               video.setAttribute("data-user-paused", "true");
           }
-      });
+      }); */
   });
 });
 
@@ -111,61 +111,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Select all images in slideshows
     const slideshows = document.querySelectorAll('.slideshow-container');
+
     slideshows.forEach(slideshow => {
-        const images = slideshow.querySelectorAll('.mySlides img');
-        images.forEach(img => {
-            img.addEventListener('click', () => toggleFullscreen(img));
+        const mediaItems = slideshow.querySelectorAll('.mySlides img, .mySlides video');
+
+        mediaItems.forEach(item => {
+            item.addEventListener('click', () => toggleFullscreen(item));
         });
     });
 
     let isFullscreen = false;
 
-    function toggleFullscreen(image) {
-        const parentSlide = image.closest('.slideshow-container');
+    function toggleFullscreen(media) {
+        const parentSlide = media.closest('.slideshow-container');
         if (!isFullscreen) {
             // Enter fullscreen mode
             parentSlide.classList.add('fullscreen');
             document.body.style.overflow = 'hidden'; // Disable scrolling
-    
-            // Dynamically adjust image to fill available space
-            const aspectRatio = image.naturalWidth / image.naturalHeight;
-            const viewportRatio = window.innerWidth / window.innerHeight;
-    
-            if (aspectRatio > viewportRatio) {
-                // Image is wider than the viewport
-                image.style.width = '100%'; // Fill width
-                image.style.height = 'auto';
-            } else {
-                // Image is taller or matches viewport ratio
-                image.style.width = 'auto';
-                image.style.height = '100%'; // Fill height
+
+            if (media.tagName === 'IMG') {
+                adjustImageToFullscreen(media);
+            } else if (media.tagName === 'VIDEO') {
+                adjustVideoToFullscreen(media);
             }
-    
-            // Ensure small images scale up to fit fullscreen
-            image.style.maxWidth = '100vw';
-            image.style.maxHeight = '100vh';
-            image.style.minWidth = '100vw'; // Force small images to scale up
-            image.style.minHeight = '100vh';
-    
+
             isFullscreen = true;
         } else {
             // Exit fullscreen mode
             parentSlide.classList.remove('fullscreen');
             document.body.style.overflow = ''; // Re-enable scrolling
-    
-            // Reset styles
-            image.style.width = '';
-            image.style.height = '';
-            image.style.maxWidth = '';
-            image.style.maxHeight = '';
-            image.style.minWidth = '';
-            image.style.minHeight = '';
+
+            if (media.tagName === 'IMG') {
+                resetMediaStyles(media);
+            } else if (media.tagName === 'VIDEO') {
+                resetMediaStyles(media);
+            }
+
             isFullscreen = false;
         }
     }
-    
-    
-});
 
+    function adjustImageToFullscreen(image) {
+        // Dynamically adjust image to fill available space
+        const aspectRatio = image.naturalWidth / image.naturalHeight;
+        const viewportRatio = window.innerWidth / window.innerHeight;
+
+        if (aspectRatio > viewportRatio) {
+            image.style.width = '100%';
+            image.style.height = 'auto';
+        } else {
+            image.style.width = 'auto';
+            image.style.height = '100%';
+        }
+
+        image.style.maxWidth = '100vw';
+        image.style.maxHeight = '100vh';
+        image.style.minWidth = '100vw';
+        image.style.minHeight = '100vh';
+    }
+
+    function adjustVideoToFullscreen(video) {
+        // Dynamically adjust video to fill available space
+        video.style.width = '100%';
+        video.style.height = 'auto';
+        video.style.maxWidth = '100vw';
+        video.style.maxHeight = '100vh';
+        video.style.minWidth = '100vw';
+        video.style.minHeight = '100vh';
+    }
+
+    function resetMediaStyles(media) {
+        media.style.width = '';
+        media.style.height = '';
+        media.style.maxWidth = '';
+        media.style.maxHeight = '';
+        media.style.minWidth = '';
+        media.style.minHeight = '';
+    }
+});
