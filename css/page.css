@@ -15,10 +15,11 @@ body {
   background-size: cover;
   background-position: center;
   z-index: -2;
-  align-items: center;
+  align-items: top;
   border-radius: 10px;
-
 }
+
+
 
 .container1 {
   background: url(../images/dark.png); 
@@ -42,11 +43,17 @@ body {
 img {
     width:100%;
     height:auto;
+    max-width: 100%;
+    object-fit: contain;
+    height: auto;
+}
+
+.slideshow-container img {
     border-radius: 10px;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
     object-fit: contain;
-    max-height: 80vh;
-  
+    max-height: 60vh;
+    margin: 5% auto 0;
   
 }
 
@@ -72,3 +79,4 @@ img:hover {
 
  
 }
+
