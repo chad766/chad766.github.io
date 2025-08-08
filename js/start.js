@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Array with texts to type in the typewriter
   var dataText = [
-    "Welcome to my portfolio. This is a place I created to show my interests and university journey. If you would like to collaborate please do reach out as I love to meet new people. Please also feel free to take a look around although some parts are still under construction."
+    "Welcome to my portfolio. I'm a Business Management graduate with a strong interest in business analysis, project management, and digital transformation. This space showcases key parts of my university journey, personal projects, and growing technical skills. I created it to reflect both my curiosity and my commitment to continuous improvement. I’m always open to new opportunities and collaboration. Feel free to reach out if you'd like to connect. And thanks for visiting! (This site is a work-in-progress. Just like me.)"
   ];
 
   // Variables to track typing progress
   var currentTextIndex = 0;
   var currentCharIndex = 0;
   var typingPaused = false;
-  var typingInterval = 60; // Desired typing speed in milliseconds , changed to 60 from 80 based on feedback 
+  var typingInterval = 40; // Desired typing speed in milliseconds , changed to 60 from 80 based on feedback 
   var typingTimeout; // Variable to hold the timeout reference
 
   // Function to type one text in the typewriter
