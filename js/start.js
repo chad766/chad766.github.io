@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Array with texts to type in the typewriter
   var dataText = [
-    "Welcome to my portfolio. I'm a Business Management graduate with a strong interest in business analysis, project management, and digital transformation. This space showcases key parts of my university journey, personal projects, and growing technical skills. I created it to reflect both my curiosity and my commitment to continuous improvement. I’m always open to new opportunities and collaboration. Feel free to reach out if you'd like to connect. And thanks for visiting! (This site is a work-in-progress. Just like me.)"
+    "Welcome to my portfolio. I'm a Business Management graduate with a strong interest in business analysis, consulting, and organisational change and transformation. This space showcases key parts of my university journey, personal projects, and growing technical skills. I created it to reflect both my curiosity and my commitment to continuous improvement. I’m always open to new opportunities and collaboration. Feel free to reach out if you'd like to connect. And thanks for visiting! (This site is a work-in-progress. Just like me.)"
   ];
 
   // Variables to track typing progress
