@@ -256,3 +256,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   
+  // --- Lazy reveal for text containers ---
+document.addEventListener("DOMContentLoaded", function () {
+    const containers = document.querySelectorAll(".container");
+  
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "200px 0px",
+        threshold: 0.1
+      }
+    );
+  
+    containers.forEach(container => observer.observe(container));
+  });
+  
