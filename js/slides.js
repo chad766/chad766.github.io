@@ -211,4 +211,48 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
+// --- Lazy preload for slideshow images ---
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    lazyImages.forEach(img => {
+      const preloader = new Image();
+      preloader.src = img.dataset.src;
+      preloader.onload = () => {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      };
+    });
+  });
+  
+// --- Lazy load videos with <source data-src> ---
+document.addEventListener("DOMContentLoaded", function () {
+    const lazyVideos = document.querySelectorAll("video");
+  
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            const source = video.querySelector("source[data-src]");
+            if (source) {
+              source.src = source.dataset.src;
+              source.removeAttribute("data-src");
+              video.load();
+              // If autoplay attribute is present, resume playback
+              if (video.hasAttribute("autoplay")) {
+                video.play().catch(() => {});
+              }
+            }
+            obs.unobserve(video);
+          }
+        });
+      },
+      { rootMargin: "200px 0px" }
+    );
+  
+    lazyVideos.forEach(video => {
+      const hasLazySource = video.querySelector("source[data-src]");
+      if (hasLazySource) observer.observe(video);
+    });
+  });
+  
